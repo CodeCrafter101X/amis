@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تطبيق الذكريات</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="3.jpg" alt="شعار التطبيق" />
+            <h1>تطبيق الذكريات</h1>
+        </div>
+        <button class="btn-add" id="addMemoryBtn"><i class="fas fa-plus"></i> إضافة ذكرى</button>
+    </header>
+
+    <main id="memoryContainer">
+        <!-- الذكريات ستظهر هنا -->
+    </main>
+
+    <div class="modal" id="modal">
+        <span class="close" id="closeModal">&times;</span>
+        <h2>إضافة ذكرى جديدة</h2>
+        <form id="memoryForm">
+            <div class="form-group">
+                <i class="fas fa-book"></i>
+                <input type="text" id="memoryTitle" placeholder="عنوان الذكرى" required>
+            </div>
+            <div class="form-group">
+                <i class="fas fa-pencil-alt"></i>
+                <textarea id="memoryDescription" placeholder="وصف الذكرى" required></textarea>
+            </div>
+            <div class="form-group">
+                <i class="fas fa-image"></i>
+                <input type="file" id="memoryImage" accept="image/*" required>
+                <small>اختر صورة للذكرى (jpeg, png, jpg)</small>
+            </div>
+            <button type="submit" class="btn-submit"><i class="fas fa-save"></i> حفظ الذكرى</button>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
