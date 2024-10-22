@@ -3,44 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تطبيق الذكريات</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>تطبيق الذكريات</title>
 </head>
 <body>
     <header>
         <div class="logo">
-            <img src="3.jpg" alt="شعار التطبيق" />
+            <img src="3.jpg" alt="Logo">
             <h1>تطبيق الذكريات</h1>
         </div>
-        <button class="btn-add" id="addMemoryBtn"><i class="fas fa-plus"></i> إضافة ذكرى</button>
+        <button class="btn-add" onclick="openPasswordModal()"><i class="fas fa-plus"></i> إضافة ذكرى</button>
     </header>
-
-    <main id="memoryContainer">
-        <!-- الذكريات ستظهر هنا -->
+    <main id="memoryList">
+        <!-- بطاقات الذكريات ستظهر هنا -->
     </main>
 
-    <div class="modal" id="modal">
-        <span class="close" id="closeModal">&times;</span>
-        <h2>إضافة ذكرى جديدة</h2>
-        <form id="memoryForm">
+    <!-- نموذج إدخال كلمة المرور -->
+    <div class="modal" id="passwordModal">
+        <div class="modal-content">
+            <span class="close" onclick="closePasswordModal()">&times;</span>
+            <h2>إدخال كلمة المرور</h2>
+            <input type="password" id="passwordInput" placeholder="كلمة المرور" required>
+            <button class="btn-submit" onclick="checkPassword()">تأكيد</button>
+        </div>
+    </div>
+
+    <!-- نموذج إضافة الذكرى -->
+    <div class="modal" id="memoryModal" style="display: none;">
+        <div id="memoryForm">
+            <span class="close" onclick="closeMemoryModal()">&times;</span>
+            <h2><i class="fas fa-sticky-note"></i> إضافة ذكرى جديدة</h2>
             <div class="form-group">
-                <i class="fas fa-book"></i>
+                <i class="fas fa-pencil-alt"></i>
                 <input type="text" id="memoryTitle" placeholder="عنوان الذكرى" required>
             </div>
             <div class="form-group">
-                <i class="fas fa-pencil-alt"></i>
-                <textarea id="memoryDescription" placeholder="وصف الذكرى" required></textarea>
+                <i class="fas fa-comment"></i>
+                <textarea id="memoryContent" placeholder="محتوى الذكرى" required></textarea>
             </div>
             <div class="form-group">
-                <i class="fas fa-image"></i>
-                <input type="file" id="memoryImage" accept="image/*" required>
-                <small>اختر صورة للذكرى (jpeg, png, jpg)</small>
+                <input type="file" id="memoryImage" accept="image/*">
             </div>
-            <button type="submit" class="btn-submit"><i class="fas fa-save"></i> حفظ الذكرى</button>
-        </form>
+            <button class="btn-submit" onclick="addMemory()"><i class="fas fa-save"></i> إضافة</button>
+        </div>
     </div>
-
-    <script src="script.js"></script>
 </body>
+<script src="script.js"></script>
 </html>
+
