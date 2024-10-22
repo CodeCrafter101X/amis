@@ -32,18 +32,20 @@ h1 {
 }
 
 .btn-add {
-    background: #03dac5;
+    background: #6200ea; /* تغيير لون الخلفية */
     border: none;
-    border-radius: 20px;
-    padding: 10px 20px;
+    border-radius: 30px; /* جعل الزر دائريًا أكثر */
+    padding: 12px 24px; /* زيادة حجم الزر */
     color: white;
     cursor: pointer;
-    transition: background 0.3s;
+    transition: background 0.3s, transform 0.2s; /* إضافة تأثير التحول */
     font-size: 18px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* إضافة ظل */
 }
 
 .btn-add:hover {
-    background: #02b59c;
+    background: #3700b3; /* تغيير لون الخلفية عند المرور */
+    transform: scale(1.05); /* تكبير الزر عند المرور */
 }
 
 main {
@@ -84,19 +86,47 @@ main {
     padding: 10px;
 }
 
+.memory-card h3 {
+    font-size: 20px;
+    color: #6200ea; /* تغيير لون العنوان */
+}
+
+.memory-card p {
+    font-size: 16px;
+    color: #666; /* لون النص */
+}
+
 .memory-card .btn-download {
-    background: #6200ea;
+    background: #03dac5; /* تغيير لون الزر */
     border: none;
-    border-radius: 20px;
-    padding: 10px 20px;
+    border-radius: 30px; /* جعل الزر دائريًا أكثر */
+    padding: 12px 24px; /* زيادة حجم الزر */
     color: white;
     cursor: pointer;
     margin: 10px;
-    transition: background 0.3s;
+    transition: background 0.3s, transform 0.2s; /* إضافة تأثير التحول */
 }
 
 .memory-card .btn-download:hover {
-    background: #3700b3;
+    background: #02b59c; /* تغيير لون الخلفية عند المرور */
+    transform: scale(1.05); /* تكبير الزر عند المرور */
+}
+
+/* تصميم زر الحذف */
+.btn-delete {
+    background: #ff3d00; /* لون خلفية الزر */
+    border: none;
+    border-radius: 30px; /* شكل دائري */
+    padding: 12px 24px; /* حجم الزر */
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s; /* إضافة تأثير التحول */
+    margin: 10px; /* هامش */
+}
+
+.btn-delete:hover {
+    background: #c62828; /* تغيير لون الخلفية عند المرور */
+    transform: scale(1.05); /* تكبير الزر عند المرور */
 }
 
 .modal {
@@ -165,15 +195,31 @@ textarea {
 }
 
 .btn-submit {
-    background: #6200ea;
+    background: #03dac5; /* تغيير لون الخلفية */
     border: none;
-    border-radius: 20px;
-    padding: 10px 20px;
+    border-radius: 30px; /* جعل الزر دائريًا أكثر */
+    padding: 12px 24px; /* زيادة حجم الزر */
     color: white;
     cursor: pointer;
-    transition: background 0.3s;
+    transition: background 0.3s, transform 0.2s; /* إضافة تأثير التحول */
 }
 
 .btn-submit:hover {
-    background: #3700b3;
+    background: #02b59c; /* تغيير لون الخلفية عند المرور */
+    transform: scale(1.05); /* تكبير الزر عند المرور */
 }
+
+/* أنماط لنموذج كلمة المرور */
+#passwordInput {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    transition: border-color 0.3s;
+}
+
+#passwordInput:focus {
+    border-color: #6200ea;
+}
+
