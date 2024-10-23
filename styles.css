@@ -3,6 +3,8 @@ body {
     margin: 0;
     background: #f0f0f0;
     color: #333;
+    line-height: 1.6;
+    transition: background 0.3s, color 0.3s; /* إضافة تأثيرات انتقالية */
 }
 
 header {
@@ -12,6 +14,7 @@ header {
     padding: 20px;
     background: linear-gradient(90deg, #6200ea, #03dac5);
     color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
 .logo {
@@ -25,27 +28,34 @@ header {
     border-radius: 50%;
     margin-right: 10px;
     object-fit: cover;
+    transition: transform 0.3s; /* تأثير التحول للصورة */
+}
+
+.logo img:hover {
+    transform: scale(1.1); /* تكبير الصورة عند المرور */
 }
 
 h1 {
     font-size: 24px;
+    transition: color 0.3s; /* تأثير الانتقال على النص */
 }
 
 .btn-add {
-    background: #6200ea; /* تغيير لون الخلفية */
+    background: #6200ea;
     border: none;
-    border-radius: 30px; /* جعل الزر دائريًا أكثر */
-    padding: 12px 24px; /* زيادة حجم الزر */
+    border-radius: 30px;
+    padding: 12px 24px;
     color: white;
     cursor: pointer;
-    transition: background 0.3s, transform 0.2s; /* إضافة تأثير التحول */
+    transition: background 0.3s, transform 0.2s, box-shadow 0.3s; /* إضافة تأثير التحول */
     font-size: 18px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* إضافة ظل */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .btn-add:hover {
-    background: #3700b3; /* تغيير لون الخلفية عند المرور */
-    transform: scale(1.05); /* تكبير الزر عند المرور */
+    background: #3700b3;
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); /* تأثير الظل عند المرور */
 }
 
 main {
@@ -62,12 +72,13 @@ main {
     margin: 15px;
     overflow: hidden;
     width: 300px;
-    transition: transform 0.2s;
+    transition: transform 0.2s, box-shadow 0.2s; /* إضافة تأثير التحول */
     position: relative;
 }
 
 .memory-card:hover {
     transform: scale(1.05);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4); /* تأثير الظل عند المرور */
 }
 
 .memory-card img {
@@ -88,45 +99,46 @@ main {
 
 .memory-card h3 {
     font-size: 20px;
-    color: #6200ea; /* تغيير لون العنوان */
+    color: #6200ea;
 }
 
 .memory-card p {
     font-size: 16px;
-    color: #666; /* لون النص */
+    color: #666;
 }
 
 .memory-card .btn-download {
-    background: #03dac5; /* تغيير لون الزر */
+    background: #03dac5;
     border: none;
-    border-radius: 30px; /* جعل الزر دائريًا أكثر */
-    padding: 12px 24px; /* زيادة حجم الزر */
+    border-radius: 30px;
+    padding: 12px 24px;
     color: white;
     cursor: pointer;
     margin: 10px;
-    transition: background 0.3s, transform 0.2s; /* إضافة تأثير التحول */
+    transition: background 0.3s, transform 0.2s, box-shadow 0.3s; /* إضافة تأثير التحول */
 }
 
 .memory-card .btn-download:hover {
-    background: #02b59c; /* تغيير لون الخلفية عند المرور */
-    transform: scale(1.05); /* تكبير الزر عند المرور */
+    background: #02b59c;
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* تأثير الظل عند المرور */
 }
 
-/* تصميم زر الحذف */
 .btn-delete {
-    background: #ff3d00; /* لون خلفية الزر */
+    background: #ff3d00;
     border: none;
-    border-radius: 30px; /* شكل دائري */
-    padding: 12px 24px; /* حجم الزر */
+    border-radius: 30px;
+    padding: 12px 24px;
     color: white;
     cursor: pointer;
-    transition: background 0.3s, transform 0.2s; /* إضافة تأثير التحول */
-    margin: 10px; /* هامش */
+    transition: background 0.3s, transform 0.2s, box-shadow 0.3s; /* إضافة تأثير التحول */
+    margin: 10px;
 }
 
 .btn-delete:hover {
-    background: #c62828; /* تغيير لون الخلفية عند المرور */
-    transform: scale(1.05); /* تكبير الزر عند المرور */
+    background: #c62828;
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* تأثير الظل عند المرور */
 }
 
 .modal {
@@ -138,6 +150,7 @@ main {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.7);
+    transition: opacity 0.3s; /* تأثير الانتقال عند فتح/إغلاق المودال */
 }
 
 .modal h2 {
@@ -178,15 +191,16 @@ input[type="text"],
 textarea,
 input[type="file"] {
     width: 100%;
-    padding: 12px 10px 12px 40px; /* Leave space for icon */
+    padding: 12px 10px 12px 40px;
     border: 1px solid #ddd;
     border-radius: 5px;
-    transition: border-color 0.3s;
+    transition: border-color 0.3s, box-shadow 0.3s; /* إضافة تأثيرات التحول */
 }
 
 input[type="text"]:focus,
 textarea:focus {
     border-color: #6200ea;
+    box-shadow: 0 0 5px rgba(98, 0, 234, 0.5); /* تأثير الظل عند التركيز */
 }
 
 textarea {
@@ -195,31 +209,33 @@ textarea {
 }
 
 .btn-submit {
-    background: #03dac5; /* تغيير لون الخلفية */
+    background: #03dac5;
     border: none;
-    border-radius: 30px; /* جعل الزر دائريًا أكثر */
-    padding: 12px 24px; /* زيادة حجم الزر */
+    border-radius: 30px;
+    padding: 12px 24px;
     color: white;
     cursor: pointer;
-    transition: background 0.3s, transform 0.2s; /* إضافة تأثير التحول */
+    transition: background 0.3s, transform 0.2s, box-shadow 0.3s; /* إضافة تأثير التحول */
 }
 
 .btn-submit:hover {
-    background: #02b59c; /* تغيير لون الخلفية عند المرور */
-    transform: scale(1.05); /* تكبير الزر عند المرور */
+    background: #02b59c;
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* تأثير الظل عند المرور */
 }
 
-/* أنماط لنموذج كلمة المرور */
 #passwordInput {
     width: 100%;
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
     margin-bottom: 10px;
-    transition: border-color 0.3s;
+    transition: border-color 0.3s, box-shadow 0.3s; /* إضافة تأثيرات التحول */
 }
 
 #passwordInput:focus {
     border-color: #6200ea;
+    box-shadow: 0 0 5px rgba(98, 0, 234, 0.5); /* تأثير الظل عند التركيز */
 }
+
 
