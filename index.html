@@ -5,15 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <title>تطبيق الذكريات</title>
+    <title>ذكريات لا تنسى</title>
 </head>
 <body>
     <header>
         <div class="logo">
             <img src="3.jpg" alt="Logo">
-            <h1>تطبيق الذكريات</h1>
+            <h1>زكرياء ميلاد</h1>
         </div>
-        <button class="btn-add" onclick="openPasswordModal()"><i class="fas fa-plus"></i> إضافة ذكرى</button>
     </header>
     <main id="memoryList">
         <!-- بطاقات الذكريات ستظهر هنا -->
@@ -48,7 +47,16 @@
             <button class="btn-submit" onclick="addMemory()"><i class="fas fa-save"></i> إضافة</button>
         </div>
     </div>
+
+    <!-- نموذج عرض الصورة -->
+    <div class="modal" id="imageModal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeImageModal()">&times;</span>
+            <img id="modalImage" src="" alt="صورة الذكرى">
+        </div>
+    </div>
 </body>
 <script src="script.js"></script>
 </html>
+
 
