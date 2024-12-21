@@ -1,4 +1,18 @@
-const memories = [];
+// إعداد Firebase
+const firebaseConfig = {
+  apiKey: "AIzaSyCZkfu2HWeHFQoEBR775wRsM8jkCzLyLRQ",
+  authDomain: "amis-d17f3.firebaseapp.com",
+  databaseURL: "https://amis-d17f3-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "amis-d17f3",
+  storageBucket: "amis-d17f3.appspot.com",
+  messagingSenderId: "456359958505",
+  appId: "1:456359958505:web:c5ce9491958cbc3e659d78",
+  measurementId: "G-4Z0T73Z48D"
+};
+
+// تهيئة Firebase
+firebase.initializeApp(firebaseConfig);
+const database = firebase.database();
 
 // دالة لفتح نموذج كلمة المرور
 function openPasswordModal() {
@@ -37,63 +51,44 @@ function checkPassword() {
 function addMemory() {
     const title = document.getElementById('memoryTitle').value;
     const content = document.getElementById('memoryContent').value;
-    const image = document.getElementById('memoryImage').files[0];
+    const imageInput = document.getElementById('memoryImage');
+    const image = imageInput.files[0];
 
-    if (title && content) {
-        const memory = {
-            title: title,
-            content: content,
-            image: URL.createObjectURL(image)
-        };
-        memories.push(memory);
-        document.getElementById('memoryTitle').value = '';
-        document.getElementById('memoryContent').value = '';
-        document.getElementById('memoryImage').value = '';
-        closeMemoryModal();
-        displayMemories();
-    }
-}
+    if (title && content && image) {
+        const storageRef = firebase.storage().ref(`images/${image.name}`);
+        const uploadTask = storageRef.put(image);
 
-// دالة لعرض الذكريات
-function displayMemories() {
-    const memoryList = document.getElementById('memoryList');
-    memoryList.innerHTML = '';
-
-    // عرض الذكريات في الذاكرة
-    memories.forEach((memory, index) => {
-        const memoryCard = document.createElement('div');
-        memoryCard.className = 'memory-card';
-        memoryCard.innerHTML = `
-            <img src="${memory.image}" alt="ذكرى">
-            <h3>${memory.title} <i class="fas fa-trash" onclick="confirmDelete(${index})"></i></h3>
-            <p>${memory.content}</p>
-            <button class="btn-download" onclick="downloadMemory(${index})"><i class="fas fa-download"></i> تنزيل</button>
-            <button class="btn-delete" onclick="confirmDelete(${index})"><i class="fas fa-trash-alt"></i> حذف</button>
-        `;
-        memoryList.appendChild(memoryCard);
-    });
-}
-
-// دالة لتأكيد الحذف
-function confirmDelete(index) {
-    const password = prompt("أدخل كلمة المرور لتأكيد الحذف:");
-    if (password === "0.0.0.0") {
-        memories.splice(index, 1);
-        displayMemories();
+        uploadTask.on('state_changed', 
+            (snapshot) => {
+                // يمكن إضافة مؤشر تحميل هنا إذا لزم الأمر
+            }, 
+            (error) => {
+                alert('حدث خطأ أثناء رفع الصورة!');
+            }, 
+            () => {
+                uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+                    const memory = {
+                        title: title,
+                        content: content,
+                        image: downloadURL
+                    };
+                    database.ref('memories').push(memory, (error) => {
+                        if (error) {
+                            alert('حدث خطأ أثناء حفظ الذكرى!');
+                        } else {
+                            document.getElementById('memoryTitle').value = '';
+                            document.getElementById('memoryContent').value = '';
+                            document.getElementById('memoryImage').value = '';
+                            closeMemoryModal();
+                            alert('تمت إضافة الذكرى بنجاح!');
+                        }
+                    });
+                });
+            }
+        );
     } else {
-        alert("كلمة المرور غير صحيحة!");
+        alert('يرجى تعبئة جميع الحقول واختيار صورة.');
     }
-}
-
-// دالة لتنزيل ذكرى
-function downloadMemory(index) {
-    const memory = memories[index];
-    const a = document.createElement('a');
-    a.href = memory.image;
-    a.download = memory.title || 'memory';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
 }
 
 // دالة لتبديل الوضع
@@ -110,28 +105,7 @@ function toggleTheme() {
     }
 }
 
-// إضافة 10 ذكريات افتراضية
-function addInitialMemories() {
-    const initialMemories = [
-        { title: "ذكرى 1", content: "لحظات مع الأصحاب. \"إنما المؤمنون إخوة\".", image: "1.jpg" },
-        { title: "ذكرى 2", content: "وقت حلو مع العائلة. \"وَأَلفَ بَيْنَ قُلُوبِهِمْ\".", image: "3.jpg" },
-        { title: "ذكرى 3", content: "أوقات مع الأحباب. \"وَذَكِّرْ فَإنَّ الذِّكْرَى تَنفَعُ الْمُؤْمِنِينَ\".", image: "7.jpg" },
-        { title: "ذكرى 4", content: "ذكريات لا تنسى. \"كل نفس ذائقة الموت\".", image: "22.jpg" },
-        { title: "ذكرى 5", content: "مع الأصحاب في العيد. \"ما يلفظ من قول إلا لديه رقيب عتيد\".", image: "33.jpg" },
-        { title: "ذكرى 6", content: "رحلة مع الأصدقاء. \"فَاذْكُرُونِي أَذْكُرْكُمْ\".", image: "55.jpg" },
-        { title: "ذكرى 7", content: "ذكريات المدرسة. \"إِنَّ أَكْرَمَكُمْ عِندَ اللَّهِ أَتْقَاكُمْ\".", image: "77.jpg" },
-        { title: "ذكرى 8", content: "لحظات مع المعلمين. \"وَقُل رَّبِّ زِدْنِي عِلْمًا\".", image: "99.jpg" },
-        { title: "ذكرى 9", content: "أيام حلوة. \"إِنَّ مَعَ الْعُسْرِ يُسْرًا\".", image: "11.jpg" },
-        { title: "ذكرى 10", content: "مع العائلة في العطلة. \"وَإِذَا سَأَلَكَ عِبَادِي عَنِّي فَإِنِّي قَرِيبٌ\".", image: "12.jpg" },
-    ];
-
-    initialMemories.forEach(memory => {
-        memories.push(memory);
-    });
-    displayMemories();
-}
-
-// استدعاء الدالة لإضافة ذكريات افتراضية عند تحميل الصفحة
-window.onload = addInitialMemories;
-
-
+// استدعاء الدالة لإعداد الصفحة عند التحميل
+window.onload = () => {
+    console.log('تم الاتصال بقاعدة البيانات.');
+};
